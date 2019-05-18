@@ -30,17 +30,32 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app-vue',
     data: {
-          newItem: { 'name': '','age': '','profession': '' },
+        items: [],
+        showModal: false,
+        newItem: { 'name': '','age': '','profession': '' },
+    },
+    mounted: function mounted() {
+            this.getItems();
     },
     methods: {
+
+        getItems: function getItems() {
+          var _this = this;
+          axios.get('/getItems').then(function (response) {
+            _this.items = response.data;
+          });
+        },
+
     	createItem: function createItem() {
     		var input = this.newItem;
+            var _this = this;
     		if (input['name'] == '' || input['age'] == '' || input['profession'] == '') 
     		{
     			alert('have to fill all rows!')
     		}else{
-    			axios.post('page-items/storeItem', input).then(function (response){
-
+    			axios.post('/getItems/storeItem', input).then(function (response){
+                    _this.newItem = {'name': '', 'age': '', 'profession': ''}
+                    _this.getItems();
     			});
     		}
     	}

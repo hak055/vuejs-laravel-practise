@@ -7,15 +7,21 @@ use App\PageItem;
 
 class PageItemController extends Controller
 {
-    public function index()
-    {
-    	return view('items.index');
-    }
+	public function getItems()
+	{
+		$pageItem = PageItem::all();
+		return $pageItem;
+	}
+    
 
     public function storeItem(Request $request)
     {
     	$pageItem = new PageItem();
-    	$pageItem->create($request->all());
+    	$pageItem->name = $request->name;    	
+		$pageItem->age = $request->age;
+		$pageItem->profession = $request->profession;
+		$pageItem->save();
+		return $pageItem;
 
     }
 }

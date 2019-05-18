@@ -23,4 +23,57 @@
                 </button>
 
 
+
+                <div class="container">
+                    <div class="table table-borderless" id="table">
+                        <table class="table table-borderless" id="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Profession</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tr v-for="item in items">
+                                <td>@{{ item.id }}</td>
+                                <td>@{{ item.name }}</td>
+                                <td>@{{ item.age }}</td>
+                                <td>@{{ item.profession }}</td>
+                                
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <modal v-if="showModal" @close="showModal=false">
+                    <h3 slot="header">Edit Item</h3>
+                    <div slot="body">
+                        
+                        <input type="hidden" disabled class="form-control" id="e_id" name="id"
+                                required  :value="this.e_id">
+                        Name: <input type="text" class="form-control" id="e_name" name="name"
+                                required  :value="this.e_name">
+                        Age: <input type="number" class="form-control" id="e_age" name="age"
+                        required  :value="this.e_age">
+                        Profession: <input type="text" class="form-control" id="e_profession" name="profession"
+                        required  :value="this.e_profession">
+                        
+                      
+                    </div>
+                    <div slot="footer">
+                        <button class="btn btn-default" @click="showModal = false">
+                        Cancel
+                      </button>
+                      
+                      <button class="btn btn-info" @click="editItem()">
+                        Update
+                      </button>
+                    </div>
+                </modal>
+
+
 @endsection
