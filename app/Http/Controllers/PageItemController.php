@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PageItem;
 
 class PageItemController extends Controller
 {
@@ -11,8 +12,10 @@ class PageItemController extends Controller
     	return view('items.index');
     }
 
-    public function storeItems(Request $item)
+    public function storeItem(Request $request)
     {
-    	//
+    	$pageItem = new PageItem();
+    	$pageItem->create($request->all());
+
     }
 }
