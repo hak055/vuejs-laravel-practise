@@ -9,7 +9,7 @@ class PageItemController extends Controller
 {
 	public function getItems()
 	{
-		$pageItem = PageItem::all();
+		$pageItem = PageItem::orderBy('id', 'desc')->get();
 		return $pageItem;
 	}
     
@@ -23,5 +23,10 @@ class PageItemController extends Controller
 		$pageItem->save();
 		return $pageItem;
 
+    }
+
+    public function deleteItem(Request $request)
+    {
+    	PageItem::find($request->id)->first()->delete();
     }
 }

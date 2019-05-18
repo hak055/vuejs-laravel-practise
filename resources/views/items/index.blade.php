@@ -2,6 +2,7 @@
 
 @section('content')
 
+ <div class="content">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" 
@@ -41,6 +42,11 @@
                                 <td>@{{ item.name }}</td>
                                 <td>@{{ item.age }}</td>
                                 <td>@{{ item.profession }}</td>
+
+                                <td id="show-modal" @click="showModal=true; setVal(item.id, item.name, item.age, item.profession)"  class="btn btn-info" ><span
+                            class="glyphicon glyphicon-pencil"></span></td>
+                            <td @click.prevent="deleteItem(item)" class="btn btn-danger"><span
+                                class="glyphicon glyphicon-trash"></span></td>
                                 
                             </tr>
                         </table>
@@ -74,6 +80,7 @@
                       </button>
                     </div>
                 </modal>
-
+            </div>
+            
 
 @endsection

@@ -20,6 +20,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+Vue.component('modal', {
+    template: '#modal-template'
+})
 // console.log("hie!");
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,9 +34,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app-vue',
     data: {
-        items: [],
-        showModal: false,
-        newItem: { 'name': '','age': '','profession': '' },
+      items: [],
+      showModal: false,
+      hasDeleted: true,
+      newItem: { 'name': '','age': '','profession': '' },
     },
     mounted: function mounted() {
             this.getItems();
@@ -58,7 +63,14 @@ const app = new Vue({
                     _this.getItems();
     			});
     		}
-    	}
+    	},
+        deleteItem: function deleteItem(item) {
+            var _this = this;
+            axios.post('/getItems/deleteItem/' + item.id).then(function (response){
+            _this.getItems();           
+            _this.hasDeleted = false
+            });
+        }
     }
 
 });
