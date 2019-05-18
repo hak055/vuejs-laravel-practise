@@ -28,4 +28,5 @@ Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edi
 
 
 Route::get('/page-items', 'PageItemController@index');
+Route::post('/page-items/storeItem', 'PageItemController@storeItem');
 
