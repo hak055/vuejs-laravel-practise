@@ -24,3 +24,12 @@ Route::get('/p/{post}', 'PostsController@show');
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+
+Route::get('/page-items', function () {
+    return view('items.index');
+});
+
+Route::get('/getItems', 'PageItemController@getItems');
+Route::post('/getItems/storeItem', 'PageItemController@storeItem');
+Route::post('/getItems/deleteItem/{id}', 'PageItemController@deleteItem');
+

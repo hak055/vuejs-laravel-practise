@@ -21,6 +21,10 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+Vue.component('modal', {
+    template: '#modal-template'
+})
+// console.log("hie!");
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -28,5 +32,68 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+    el: '#root',
+    data: {
+      items: [],
+      showModal: false,
+      hasDeleted: true,
+      newItem: { 'name': '','age': '','profession': '' },
+      e_name: '',
+      e_age: '',
+      e_id: '',
+      e_profession: '',
+    },
+    mounted: function mounted() {
+            this.getItems();
+    },
+    methods: {
+
+        getItems: function getItems() {
+          var _this = this;
+          axios.get('/getItems').then(function (response) {
+            _this.items = response.data;
+          });
+        },
+        setVal(val_id, val_name, val_age, val_profession) {
+            this.e_id = val_id;
+            this.e_name = val_name;
+            this.e_age = val_age;
+            this.e_profession = val_profession;
+         },
+    	createItem: function createItem() {
+    		var input = this.newItem;
+            var _this = this;
+    		if (input['name'] == '' || input['age'] == '' || input['profession'] == '') 
+    		{
+    			alert('have to fill all rows!')
+    		}else{
+    			axios.post('/getItems/storeItem', input).then(function (response){
+                    _this.newItem = {'name': '', 'age': '', 'profession': ''}
+                    _this.getItems();
+    			});
+    		}
+    	},
+        editItem: function(){
+         var i_val_1 = document.getElementById('e_id');
+         var n_val_1 = document.getElementById('e_name');
+         var a_val_1 = document.getElementById('e_age');
+         var p_val_1 = document.getElementById('e_profession');
+
+          axios.post('/edititems/' + i_val_1.value, {val_1: n_val_1.value, val_2: a_val_1.value,val_3: p_val_1.value })
+            .then(response => {
+              _this.getVueItems();
+              _this.showModal=false
+            });
+          _this.hasDeleted = true;
+        
+        },
+        deleteItem: function deleteItem(item) {
+            var _this = this;
+            axios.post('/getItems/deleteItem/' + item.id).then(function (response){
+            _this.getItems();           
+            _this.hasDeleted = false
+            });
+        }
+    }
+
 });
