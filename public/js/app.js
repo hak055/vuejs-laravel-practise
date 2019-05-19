@@ -49291,7 +49291,7 @@ Vue.component('modal', {
  */
 
 var app = new Vue({
-  el: '#app-vue',
+  el: '#root',
   data: {
     items: [],
     showModal: false,

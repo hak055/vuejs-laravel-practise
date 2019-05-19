@@ -17,9 +17,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet"
     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/items.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app-vue">

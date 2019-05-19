@@ -1,8 +1,86 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- <link href="{{ asset('css/item.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet"
+    href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-@section('content')
-
- <div class="content">
+        <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <style type="text/css">
+        <style>
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: auto;
+    margin: 0;
+}
+.full-height {
+    min-height: 50vh;
+}
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.position-ref {
+    position: relative;
+}
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+.content {
+/*  text-align: center; */
+}
+.title {
+    font-size: 84px;
+}
+.m-b-md {
+    margin-bottom: 30px;
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+.modal-body {
+  margin: 20px 0;
+}
+    </style>
+</head>
+<body>
+ <div class="flex-center position-ref full-height">
+        <div id="root">
+            <div class="content">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" 
@@ -51,10 +129,6 @@
                             </tr>
                         </table>
                     </div>
-                </div>
-
-
-
                 <modal v-if="showModal" @close="showModal=false">
                     <h3 slot="header">Edit Item</h3>
                     <div slot="body">
@@ -81,6 +155,36 @@
                     </div>
                 </modal>
             </div>
-            
+        </div>
+    </div>
+    <script type="text/x-template" id="modal-template">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-container">
 
-@endsection
+              <div class="modal-header">
+                <slot name="header">
+                  default header
+                </slot>
+              </div>
+
+              <div class="modal-body">
+                <slot name="body">
+                    
+                </slot>
+              </div>
+
+              <div class="modal-footer">
+                <slot name="footer">
+                  
+                  
+                </slot>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </script>
+</body>
+</html>

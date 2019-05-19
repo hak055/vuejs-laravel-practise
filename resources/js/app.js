@@ -32,7 +32,7 @@ Vue.component('modal', {
  */
 
 const app = new Vue({
-    el: '#app-vue',
+    el: '#root',
     data: {
       items: [],
       showModal: false,
