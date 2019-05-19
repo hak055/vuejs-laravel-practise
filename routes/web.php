@@ -31,4 +31,5 @@ Route::get('/page-items', function () {
 
 Route::get('/getItems', 'PageItemController@getItems');
 Route::post('/getItems/storeItem', 'PageItemController@storeItem');
+Route::post('/getItems/deleteItem/{id}', 'PageItemController@deleteItem');
 
