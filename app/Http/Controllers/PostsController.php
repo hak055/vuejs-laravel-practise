@@ -45,12 +45,12 @@ class PostsController extends Controller
     */
     public function show($slug)
     {
-        // if (is_numeric($slug)) {
-        // // Get post for slug.
-        // $post = Post::findOrFail($slug);
+        if (is_numeric($slug)) {
+        // Get post for slug.
+        $post = Post::findOrFail($slug);
 
-        // return Redirect::to(route('p.show', $post->slug), 301);
-        // }
+        return Redirect::to(route('p.show', $post->slug), 301);
+        }
 
         // Get post for slug.
         $post = Post::whereSlug($slug)->firstOrFail();
