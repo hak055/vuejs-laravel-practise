@@ -8,7 +8,9 @@
             </div>
             <div class="col-4">
                 <div>
-                    <h1>{{$post->user->username}}</h1>
+                    <a href="/profile/{{$post->user_id}}">
+                        <h1>{{$post->user->username}}</h1>
+                    </a>
 
                 </div>
 
