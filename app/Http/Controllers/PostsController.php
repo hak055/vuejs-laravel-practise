@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Post;
@@ -35,9 +36,28 @@ class PostsController extends Controller
 
     	return redirect('/profile/'.auth()->user()->id);
     }
-
-    public function show(Post $post)
+    /**
+    * Display the specified resource.
+    *
+    * @param string $slug
+    *
+    * @return \Illuminate\Http\RedirectResponse
+    */
+    public function show($slug)
     {
-        return view('posts.show', compact('post'));
+        // if (is_numeric($slug)) {
+        // // Get post for slug.
+        // $post = Post::findOrFail($slug);
+
+        // return Redirect::to(route('p.show', $post->slug), 301);
+        // }
+
+        // Get post for slug.
+        $post = Post::whereSlug($slug)->firstOrFail();
+
+        return view('posts.show', [
+        'post' => $post
+        ]);
+                
     }
 }
