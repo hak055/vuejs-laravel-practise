@@ -79,7 +79,7 @@ const app = new Vue({
          var a_val_1 = document.getElementById('e_age');
          var p_val_1 = document.getElementById('e_profession');
 
-          axios.post('/edititems/' + i_val_1.value, {val_1: n_val_1.value, val_2: a_val_1.value,val_3: p_val_1.value })
+          axios.post('/getItems/editItem' + i_val_1.value, {val_1: n_val_1.value, val_2: a_val_1.value,val_3: p_val_1.value })
             .then(response => {
               _this.getVueItems();
               _this.showModal=false

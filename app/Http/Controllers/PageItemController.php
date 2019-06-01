@@ -29,4 +29,14 @@ class PageItemController extends Controller
     {
     	PageItem::find($request->id)->first()->delete();
     }
+
+    public function editItems(Request $request, $id)
+    {
+    	$data =Data::where('id', $id)->first();
+		$data->name = $request->get('val_1');
+		$data->age = $request->get('val_2');
+		$data->profession = $request->get('val_3');
+		$data->save();
+		return $data;
+    }
 }

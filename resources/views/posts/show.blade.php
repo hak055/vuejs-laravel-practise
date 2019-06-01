@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-8">
-                <img src="/storage/{{$post->image}}" width="70%">
+            <div class="image__wrapper col-8">
+                <img class="minimized" src="/storage/{{$post->image}}" width="40%" style="" onmouseover="this.style.width='90%'" onmouseout="this.style.width='40%'">
             </div>
             <div class="col-4">
                 <div>
@@ -16,6 +16,9 @@
 
             </div>
         </div>
+    </div>
+    <div class="magnify">
+        
     </div>
 
 @endsection
