@@ -36,4 +36,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //метод редиректа после авторизации
+    protected function redirectTo()
+    {
+        return url('/profile',auth()->user()->id);
+    }
 }
